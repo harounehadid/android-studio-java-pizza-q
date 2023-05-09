@@ -47,6 +47,7 @@ public class StarterActivity extends AppCompatActivity {
                     handler.postDelayed(this, delay);
                 }
                 else {
+                    progressTxt.setText("100%");
                     startActivity(new Intent(StarterActivity.this, HomeActivity.class));
                 }
             }
