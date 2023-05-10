@@ -2,13 +2,17 @@ package com.example.pizzaq;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -22,7 +26,24 @@ public class HomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_home);
 
-        this.connectAndRetrieveData();
+        // Display pizza cards
+        RecyclerView recyclerView = findViewById(R.id.recycleView);
+        MyAdapter adapter = new MyAdapter(this.connectAndRetrieveData(), this);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Cart button
+        findViewById(R.id.cartBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("some", "go to next activity");
+            }
+        });
+    }
+
+    public void cardClick(View v) {
+        Log.d("some", "last activity");
     }
 
     private void hideUnwantedGUI() {
@@ -32,7 +53,9 @@ public class HomeActivity extends AppCompatActivity {
         if (actionBar != null) actionBar.hide();
     }
 
-    private void connectAndRetrieveData() {
+    private ArrayList<Pizza> connectAndRetrieveData() {
+        ArrayList<Pizza> pizzasList = new ArrayList<>();
+
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         dbHelper.createDatabase();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -58,11 +81,33 @@ public class HomeActivity extends AppCompatActivity {
         );
 
         while (cursor.moveToNext()) {
-            String name = cursor.getString(1);
-            Log.d("some", name);
+            int id = cursor.getInt(
+                    cursor.getColumnIndexOrThrow(PizzaContract.COLUMN_ID)
+            );
+            String name = cursor.getString(
+                    cursor.getColumnIndexOrThrow(PizzaContract.COLUMN_NAME)
+            );
+            int price = cursor.getInt(
+                    cursor.getColumnIndexOrThrow(PizzaContract.COLUMN_PRICE)
+            );
+            int calories = cursor.getInt(
+                    cursor.getColumnIndexOrThrow(PizzaContract.COLUMN_CALORIES)
+            );
+            String ingredients = cursor.getString(
+                    cursor.getColumnIndexOrThrow(PizzaContract.COLUMN_INGREDIENTS)
+            );
+            String img_id = cursor.getString(
+                    cursor.getColumnIndexOrThrow(PizzaContract.COLUMN_IMG_ID)
+            );
+
+            pizzasList.add(
+                    new Pizza(id, name, price, calories, ingredients, img_id)
+            );
         }
 
         cursor.close();
         db.close();
+
+        return pizzasList;
     }
 }

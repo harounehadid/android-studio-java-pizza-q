@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="199dp"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="25dp">
+    app:cardCornerRadius="25dp"
+    android:layout_marginRight="9dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -15,8 +16,7 @@
             android:id="@+id/item_img"
             android:layout_width="match_parent"
             android:layout_height="146dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/florentina_pizza_img" />
+            android:layout_gravity="center_horizontal" />
 
         <!-- Pizza name -->
         <LinearLayout
@@ -25,11 +25,12 @@
             android:layout_marginTop="13dp">
 
             <TextView
+                android:id="@+id/item_name"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="Florentina Pizza"
+                android:text="Pizza Name"
                 android:textColor="#1c1c1c"
                 android:textFontWeight="600"
                 android:textSize="16sp" />
@@ -56,7 +57,7 @@
                     android:layout_height="42dp"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="2000"
+                    android:text="0000"
                     android:textColor="#1c1c1c"
                     android:textSize="14sp" />
 
@@ -99,7 +100,7 @@
                     android:layout_height="42dp"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:text="3100"
+                    android:text="0000"
                     android:textColor="#1C1C1C"
                     android:textSize="18sp" />
 
