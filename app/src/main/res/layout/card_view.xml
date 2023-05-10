@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="199dp"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="25dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Pizza image -->
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/florentina_pizza_img" />
+
+        <!-- Pizza name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:text="Florentina Pizza"
+                android:textColor="#1c1c1c"
+                android:textFontWeight="600"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Display details -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal"
+            android:gravity="start">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_marginLeft="19dp"
+                android:gravity="center_vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/calories_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="2000"
+                    android:textColor="#1c1c1c"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginLeft="4dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="kcal"
+                    android:textColor="#6B6B6B"
+                    android:textFontWeight="600"
+                    android:textSize="12sp"
+                    android:paddingTop="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_marginRight="19dp"
+                android:gravity="center"
+                android:layout_weight="0">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="DZD"
+                    android:textColor="#FF3822"
+                    android:textFontWeight="600"
+                    android:textSize="10sp"
+                    android:layout_marginRight="6dp"
+                    android:paddingTop="3dp" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="3100"
+                    android:textColor="#1C1C1C"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Adding and removing pizzas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp">
+
+            <ImageButton
+                android:id="@+id/remove_btn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/remove_button" />
+            
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="59dp"
+                android:layout_height="29dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="#1c1c1c"
+                android:textFontWeight="600"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/add_btn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/add_button" />
+
+        </LinearLayout>
+        
+        <!-- List of ingredients button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageButton
+                android:id="@+id/ingredients_list_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:gravity="center"
+                android:background="#ffffff"
+                android:src="@drawable/list_of_ingredients_button"
+                android:layout_marginBottom="19dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
