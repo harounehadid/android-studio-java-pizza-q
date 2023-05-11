@@ -70,6 +70,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         holder.viewId = pizza.getId();
 
+        holder.amount.setText(Integer.toString(pizza.getAmount()));
+
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
