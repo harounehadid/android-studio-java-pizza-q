@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+    ArrayList<Pizza> pizzasList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // Display pizza cards
+        pizzasList = this.connectAndRetrieveData();
+
         RecyclerView recyclerView = findViewById(R.id.recycleView);
-        MyAdapter adapter = new MyAdapter(this.connectAndRetrieveData(), this);
+        MyAdapter adapter = new MyAdapter(pizzasList, this);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -37,13 +41,25 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.cartBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("some", "go to next activity");
+                displayOrderPage();
             }
         });
     }
 
-    public void cardClick(View v) {
-        Log.d("some", "last activity");
+    private void displayOrderPage() {
+        String orderList = "";
+        int index = 1;
+
+        for (Pizza pizza : pizzasList) {
+            if (pizza.getAmount() > 0) {
+                orderList += Integer.toString(index) + ") " + pizza.getName() + " X " + Integer.toString(pizza.getAmount()) + "\n";
+                index++;
+            }
+        }
+
+        Intent intent = new Intent(HomeActivity.this, OrderActivity.class);
+        intent.putExtra("order", orderList);
+        startActivity(intent);
     }
 
     private void hideUnwantedGUI() {
